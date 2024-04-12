@@ -16,7 +16,6 @@ Lead Auditors:
 - [High](#high)
 - [Medium](#medium)
 - [Low](#low)
-- [Informational](#informational)
 - [Gas](#gas)
 
 # Protocol Summary
