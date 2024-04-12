@@ -58,10 +58,10 @@ All vulnerabilities discovered during the audit are classified based on their po
 
 | Severity | # of Findings |
 | -------- | ------------- |
-| HIGH     |               |
-| MEDIUM   |               |
-| LOW      |               |
-| GAS      |               |
+| HIGH     |        3      |
+| MEDIUM   |        3      |
+| LOW      |        1      |
+| GAS      |        5      |
 
 # Findings
 
@@ -75,7 +75,7 @@ All vulnerabilities discovered during the audit are classified based on their po
 
 # High
 
-## Reentrancy attack
+## 1. Reentrancy attack
 
 ### Description
 
@@ -109,7 +109,7 @@ All vulnerabilities discovered during the audit are classified based on their po
 3. Атакующий участвует в розыгрыше
 4. Атакующий вызывает `refund` из своего контракта, опустошая баланс контракта.
 
-## Слабая случайность
+## 2. Слабая случайность
 
 ### Description
 
@@ -129,7 +129,7 @@ All vulnerabilities discovered during the audit are classified based on their po
 2. Пользователи могут подделывать/манипулировать значением `msg.sender`, в результате чего их адрес будет использован для определения победителя!
 3. Пользователь может отменить свою транзакцию `selectWinner`, если ему не нравится победитель или полученный щенок.
 
-## Целочисленное переполнение
+## 3. Целочисленное переполнение
 
 ### Description
 
@@ -156,7 +156,7 @@ All vulnerabilities discovered during the audit are classified based on their po
 
 # Medium
 
-## Потенциальная атака типа "отказ в обслуживании" (DoS), увеличивающая стоимость газа для будущих участников.
+## 1. Потенциальная атака типа "отказ в обслуживании" (DoS), увеличивающая стоимость газа для будущих участников.
 
 ### Description
 
@@ -192,7 +192,7 @@ for (uint256 i = 0; i < players.length - 1; i++) {
 
 Это более чем в 3 раза дороже для вторых 100 игроков.
 
-## Небезопасное приведение
+## 2. Небезопасное приведение
 
 ### Description
 
@@ -219,7 +219,7 @@ uint64(fee)
 // prints 0
 ```
 
-## II. Возможность вывести средства во время игры
+## 3. Возможность вывести средства во время игры
 
 ### Description
 
@@ -315,7 +315,7 @@ fee = totalAmountCollected - prizePool
 
 # Low
 
-## Неверный индекс
+## 1. Неверный индекс
 
 ### Description
 
@@ -325,7 +325,7 @@ fee = totalAmountCollected - prizePool
 
 Вы можете зарезервировать 0-ю позицию для соревнований, но лучшим решением может быть возвращение `int256`, где функция возвращает `-1`, если игрок не активен.
 
-# Gas
+# 1. Gas
 
 ## Неизменяемые переменные состояния должны быть объявлены const или immutable.
 
@@ -350,7 +350,7 @@ fee = totalAmountCollected - prizePool
 
 ![alt text](images/gas2.png)
 
-## Использование маппинга для оптимизации фунĸции \_isActivePlayer
+## 2. Использование маппинга для оптимизации фунĸции \_isActivePlayer
 
 ### Description
 
@@ -381,7 +381,7 @@ function _isActivePlayer() internal view returns (bool) {
 }
 ```
 
-## Проверĸа адреса на то, что он нулевой
+## 3. Проверĸа адреса на то, что он нулевой
 
 ### Description
 
@@ -398,7 +398,7 @@ address winner = players[winnerIndex];
 require(winner != address(0), "KittenRaffle: Нулевой адрес победителя");
 ```
 
-## GAS_2
+## 4. GAS_2
 
 ### Description
 
@@ -426,7 +426,7 @@ for (uint256 i = 0; i < players.length - 1; i++) {
 
 Поместите проверку входных данных перед изменением состояния.
 
-## GAS_4
+## 5. GAS_4
 
 ### Description
 
